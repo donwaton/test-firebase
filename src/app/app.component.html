@@ -1,7 +1,8 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a href="/" class="navbar-brand">
+  <a routerLink="/home" class="navbar-brand" routerLinkActive="active">
     Test Firebase
   </a>
+  <a routerLink="/products" routerLinkActive="active">Products</a>
 </nav>
 
-<app-products></app-products>
+<router-outlet></router-outlet>

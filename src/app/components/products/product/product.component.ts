@@ -22,16 +22,33 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit(productForm: NgForm){
-    if(productForm.value.$key == null)
+    if(productForm.value.$key == null){
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'productCRUD',
+        eventLabel: 'insertProduct',
+        eventAction: 'insertProduct'
+      });
       this.productService.insertProduct(productForm.value)
-    else 
+    }
+    else {
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'productCRUD',
+        eventLabel: 'updateProduct',
+        eventAction: 'updateProduct'
+      });
       this.productService.updateProduct(productForm.value);
+    }
     
     this.resetForm(productForm);
   }
 
   resetForm(productForm?: NgForm){
     if(productForm != null){
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'others',
+        eventLabel: 'resetForm',
+        eventAction: 'resetForm'
+      });
       productForm.reset();
       this.productService.selectedProduct = new Product();
     }

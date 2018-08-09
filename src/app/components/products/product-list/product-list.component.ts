@@ -31,10 +31,20 @@ export class ProductListComponent implements OnInit {
   }
 
   onEdit(product:Product){
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'productCRUD',
+      eventLabel: 'editProduct',
+      eventAction: 'editingProduct'
+    });
     this.productService.selectedProduct = Object.assign({},product); 
   }
 
   onDelete($key: string){
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'productCRUD',
+      eventLabel: 'deleteProduct',
+      eventAction: 'deletingProduct'
+    });
     this.productService.deleteProduct($key);
   }
 
